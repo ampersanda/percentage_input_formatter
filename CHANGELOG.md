@@ -1,3 +1,11 @@
-## [0.0.1] - TODO: Add release date.
+# percentage_input_formatter
 
-* TODO: Describe initial release.
+Indonesian rupiah currency formatter, currency parser and input formatter.
+
+```yaml
+percentage_input_formatter: ^0.0.1
+```  
+
+## TODO
+
+- [ ] Add more tests (to create other functionality)
