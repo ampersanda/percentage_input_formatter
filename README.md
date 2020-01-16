@@ -1,3 +1,4 @@
+# Warning: experimental, use for my personal purpose
 # percentage_input_formatter
 
 Percentage currency formatter, currency parser and input formatter.
