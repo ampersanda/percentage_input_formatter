@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class PercentageInputFormatter extends TextInputFormatter {
-  final double minValue, maxValue;
+  final double maxValue;
+  final bool replaceZeroWithBlank;
 
   static double parse(String value) {
     return double.parse(value.replaceAll('.', '').replaceAll('%', '')) ?? 0;
@@ -22,26 +23,29 @@ class PercentageInputFormatter extends TextInputFormatter {
       return newValue.copyWith(
           text: format(fallback),
           selection:
-          TextSelection.collapsed(offset: format(fallback).length - 1));
+              TextSelection.collapsed(offset: format(fallback).length - 1));
     }
 
     double value = parse(newValue.text);
 
-    if (minValue != null && maxValue != null) {
+    if (maxValue != null) {
       if (value >= maxValue) {
         value = maxValue;
-      } else if (value <= minValue) {
-        value = minValue;
       }
+//      else if (value <= minValue) {
+//        value = minValue;
+//      }
     }
 
-    String newText = format(value.toInt().toString());
+    String newText = replaceZeroWithBlank && value == 0
+        ? format(value.toInt().toString())
+        : '';
 
     return newValue.copyWith(
         text: newText,
         selection: TextSelection.collapsed(offset: newText.length - 1));
   }
 
-  PercentageInputFormatter([this.minValue, this.maxValue]);
+  PercentageInputFormatter(
+      {this.maxValue = 100, this.replaceZeroWithBlank = false});
 }
-
