@@ -8,6 +8,10 @@ class PercentageInputFormatter extends TextInputFormatter {
   final bool replaceZeroWithBlank;
 
   static double parse(String value) {
+    if (value == null || value.trim() == '') {
+      return null;
+    }
+
     return double.parse(value.replaceAll('.', '').replaceAll('%', '')) ?? 0;
   }
 
