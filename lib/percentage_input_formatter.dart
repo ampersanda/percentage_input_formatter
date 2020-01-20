@@ -42,8 +42,8 @@ class PercentageInputFormatter extends TextInputFormatter {
     }
 
     String newText = replaceZeroWithBlank && value == 0
-        ? format(value.toInt().toString())
-        : '';
+        ? ''
+        : format(value.toInt().toString());
 
     return newValue.copyWith(
         text: newText,
